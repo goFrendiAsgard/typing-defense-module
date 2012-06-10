@@ -1,0 +1,75 @@
+.bubb
+{ 
+    position: absolute; 
+    width:40px; 
+    height: 40px; 
+    font: bold 14px verdana; 
+    background-color: yellow; 
+    text-align: center; 
+    -webkit-border-radius: 40px; 
+    -moz-border-radius: 40px; 
+    vertical-align: middle; 
+    padding: 5px; 
+}
+
+.gameover{
+    width: 90%; 
+    height: 90%;
+    padding: 10px 15px; 
+    text-align: center;
+    vertical-align: middle; 
+    font:bold 15px arial; 
+    background-color: #dedede; 
+    color: #000; 
+    -webkit-border-radius: 6px; 
+    -moz-border-radius: 6px; 
+    position: absolute; 
+}
+
+#board
+{ 
+    width: 100%; 
+    margin: 0 auto; 
+    padding: 0; 
+}  
+
+#score
+{
+    font-size:46px; 
+    top: 25px; 
+    right: 50px; 
+    display: none; 
+    text-align:right; 
+} 
+
+#start
+{ 
+    width: 50px; 
+    padding: 10px 15px; 
+    text-align: center; 
+    font:bold 15px arial; 
+    background-color: #dedede; 
+    color: #000; 
+    -webkit-border-radius: 6px; 
+    -moz-border-radius: 6px; 
+    position: absolute; 
+} 
+
+#word
+{
+    padding: 10px 15px; 
+    text-align: center; 
+    font:bold 15px arial; 
+    background-color: #dedede; 
+    color: #000; 
+    -webkit-border-radius: 6px; 
+    -moz-border-radius: 6px; 
+    position: absolute; 
+    display : none;
+    z-index : 1;
+}
+
+#start:hover
+{ 
+    cursor: pointer; 
+}
