@@ -3,21 +3,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>modules/typing_defense/assets/css/style.css" />
     <script type="text/javascript" src="<?php echo base_url(); ?>modules/typing_defense/assets/js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript">
-		  //question, answer, active
-		    var DATA = [
-		        ['1+1', '2', 0],
-		        ['1+3', '4', 0],
-		        ['1+5', '6', 0],
-		        ['A', 'A', 0],
-		        ['a', 'a', 0],
-		        ['B', 'B', 0],
-		        ['2+2', '4', 0],
-		        ['I love you', 'I love you', 0],
-		        ['Sayoonara', 'Sayoonara', 0],
-		        ['Lucid', 'Lucid', 0],
-		        ['Dark', 'Dark', 0],
-		        ['Raise', 'Raise', 0],
-		    ];
+		    var DATA = null;
 		    var WRONG_PENALTY = 5;
 		    var CORRECT_POINT = 10;
 		    var INTERVAL = 1000;
@@ -37,10 +23,19 @@
 		            "top" : (height/2 - $('#start').height()/2)+'px', 
 		            "left" : (width/2 - $('#start').width()/2)+'px' 
 		        });
+
+		        $('#end').css({ 
+		            "top" : (height/2 - $('#end').height()/2)+'px', 
+		            "left" : (width/2 - $('#end').width()/2)+'px' 
+		        });
 		        
 		        $('#word').css({ 
 		            "top" : (height/2 - $('#word').height()/2)+'px', 
 		            "left" : (width/2 - $('#word').width()/2)+'px' 
+		        });
+
+		        $('#end').click( function(){
+		        	window.location = '<?php echo site_url($cms['module_name']."/typing_defense/index");?>';
 		        });
 		
 		        $('#start').click( function(){
@@ -94,10 +89,20 @@
 		            }
 		            if(delta_score!=0){
 		                score += delta_score;
-		                $('#score').html(score);
+		                display_score(score);
 		            }
 		            
 		        });
+
+		        function display_score(newScore){
+		        	if(newScore<0){
+	                	$('#score').html('0');
+	                }else if(newScore>WIN_SCORE){
+						$('#score').html(WIN_SCORE);
+			        }else{
+	                	$('#score').html(newScore);
+			        }
+				}
 		        
 		        function on_timer(){
 		            var top_target = height/2;
@@ -118,14 +123,16 @@
 		                if(delta<20){
 		                    score -= COLLATION_PENALTY
 		                    $(this).remove();
-		                    $('#score').html(score);
+		                    display_score(score);
 		                }
 		                
 		                if (score<0){
-		                    $("#board").html('<div class="gameover">You loose</div>');
+		                    //$("#board").html('<div class="gameover">You loose</div>');
+		                    $("#end").html('You Loose');
 		                    GAME_OVER = true;
-		                }else if (score>WIN_SCORE){
-		                    $("#board").html('<div class="gameover">You Win</div>');
+		                }else if (score>=WIN_SCORE){
+		                    //$("#board").html('<div class="gameover">You Win</div>');
+		                    $("#end").html('You Win');
 		                    GAME_OVER = true;
 		                }
 		                if(GAME_OVER){
@@ -137,7 +144,10 @@
 			                	}
 					        });
 		                    window.clearInterval(timer);
-		                    window.location = '<?php echo site_url($cms['module_name']."/typing_defense/index");?>';
+		                    $("#end").show();
+		                    $("#word").hide();
+		                    $('.bubb').fadeOut('slow').hide( 'slow');
+	                        $('.bubb').remove();
 		                }
 		                
 		                delta_y = Math.round(delta_y * SPEED/delta);
@@ -194,6 +204,7 @@
         <div id="score">0</div> 
         <div id="start">Start</div>
         <input id="word" type="text" />
+        <div id="end">End</div>
     </div>    
 </body>
 </html>

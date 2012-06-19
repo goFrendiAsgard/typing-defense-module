@@ -70,6 +70,20 @@ body
     -webkit-border-radius: 6px; 
     -moz-border-radius: 6px; 
     position: absolute; 
+}
+
+#end
+{ 
+    width: 100px; 
+    padding: 10px 15px; 
+    text-align: center; 
+    font:bold 15px arial; 
+    background-color: #dedede; 
+    color: #000; 
+    -webkit-border-radius: 6px; 
+    -moz-border-radius: 6px; 
+    position: absolute; 
+    display: none;
 } 
 
 #word
@@ -86,7 +100,7 @@ body
     z-index : 1;
 }
 
-#start:hover
+#start:hover, #end:hover
 { 
     cursor: pointer; 
 }

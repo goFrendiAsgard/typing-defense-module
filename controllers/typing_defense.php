@@ -17,8 +17,9 @@ class Typing_defense extends CMS_Controller {
     	
     	$where = 'min_score_to_play <= '.$user_score;
     	$query = $this->db
-    		->select('level_id, level_name, description')
+    		->select('typedef_level.level_id, level_name, description, win')
     		->from('typedef_level')
+    		->join('typedef_score', 'typedef_score.level_id = typedef_level.level_id', 'left')
     		->where($where)
     		->order_by('min_score_to_play', 'desc')
     		->get();
@@ -27,10 +28,11 @@ class Typing_defense extends CMS_Controller {
     		$games[] = array(
     			'id' => $row->level_id,
     			'name' => $row->level_name,
-    			'description' => $row->description
+    			'description' => $row->description,
+    			'win' => $row->win
     		);
     	}
-    	$data=array("games"=>$games);
+    	$data=array("games"=>$games, "user_score"=>$user_score);
     	$this->view('index.php', $data, 'typedef_index');
     }
     

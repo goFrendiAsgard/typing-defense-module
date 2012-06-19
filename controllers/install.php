@@ -70,8 +70,9 @@ class Install extends CMS_Module_Installer {
         $this->db->query("
         	INSERT INTO `typedef_level` (`level_id`, `level_name`, `wrong_penalty`, `collation_penalty`, `correct_point`, `interval`, `speed`, `win_score`, `min_score_to_play`, `description`) VALUES
 				(1, 'Letter Shooter', 5, 50, 10, 1000, 5, 1000, 0, '<p>Shoot the floating letter</p>'),
-				(2, 'Word Typer', 5, 50, 10, 3000, 4, 1000, 1000, '<p>Type the words</p>'),
-				(3, 'Sentence Banisher', 5, 50, 10, 6000, 2, 1000, 2000, '<p>More than words...</p>');        		
+				(2, 'Word Typer', 5, 50, 10, 2000, 4, 1000, 1000, '<p>Type the words</p>'),
+				(3, 'Sentence Banisher', 5, 50, 10, 6000, 2, 1000, 2000, '<p>More than words...</p>'),
+        		(4, 'Amateur Calculator', 5, 50, 10, 3000, 2, 1000, 2000, '<p>Calculate and conquer...</p>');        		
          ");
         $this->db->query("
         	INSERT INTO `typedef_question` (`question_id`, `level_id`, `question`, `answer`) VALUES
@@ -263,9 +264,28 @@ class Install extends CMS_Module_Installer {
         		(186, 3, 'Jump ship', 'Jump ship'),
 				(187, 3, 'Cut a deal', 'Cut a deal'),
 				(188, 3, 'Ants in your pants', 'Ants in your pants'),
-        		(189, 3, 'On cloud nine', 'On cloud nine'); 
-				
-        		");
+        		(189, 3, 'On cloud nine', 'On cloud nine'),
+        		(190, 4, '1+1', '2'),
+        		(191, 4, '5-7', '-2'),
+				(192, 4, '9+4', '13'),
+        		(193, 4, '20-3', '17'),
+				(194, 4, '8-9', '-1'),	
+        		(195, 4, '7+8', '15'),
+        		(196, 4, '3+2', '5'),
+				(197, 4, '4+4', '8'),
+				(198, 4, '4-4', '0'),
+        		(199, 4, '2+7', '9'),
+        		(200, 4, '1+11', '12'),
+        		(201, 4, '25-7', '18'),
+				(202, 4, '9-5', '4'),
+        		(203, 4, '5+9', '14'),
+				(204, 4, '8-10', '-2'),	
+        		(205, 4, '7+9', '16'),
+        		(206, 4, '3+0', '3'),
+				(207, 4, '0-3', '-3'),
+				(208, 4, '4+18', '22'),
+        		(209, 4, '2-7', '-5');				
+        	");
         $this->add_navigation("typedef_index","Typing Defense", $this->cms_module_name()."/typing_defense/index", 3);
         $this->add_navigation("typedef_level", "Level Management", $this->cms_module_name()."/typing_defense/level", 4, "typedef_index");
         $this->add_navigation("typedef_question", "Question Management", $this->cms_module_name()."/typing_defense/question", 4, "typedef_index");
