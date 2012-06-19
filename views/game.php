@@ -137,6 +137,7 @@
 			                	}
 					        });
 		                    window.clearInterval(timer);
+		                    window.location = '<?php echo site_url($cms['module_name']."/typing_defense/index");?>';
 		                }
 		                
 		                delta_y = Math.round(delta_y * SPEED/delta);
@@ -152,7 +153,6 @@
 		            if(GAME_OVER){
 		                return false;
 		            }
-		            var color = '#E0E0E0';
 		            var k = Math.round(Math.random()*(DATA.length-1));
 		            var content = DATA[k][0];
 		            var top = 0;
@@ -175,7 +175,12 @@
 		                }
 		                top = Math.floor(Math.random() * height );
 		            }
-		            $('#board').append('<span class="bubb bubb'+ k +'" style="left: '+ left +'; top: '+ top +'; background-color:'+ color +'">'+ content +'</span>');
+		            $('#board').append(
+				            '<span class="bubb bubb'+ k +'" style="left: '+ left +'; top: '+ top +';">'+
+				            '<img width="80px" src="<?php echo site_url('modules/'.$cms['module_name']."/assets/images/asteroid.gif");?>" />'+ 
+				            	content +
+				            '</span>'
+				    	);
 		            DATA[k][2] +=1;
 		            setTimeout(genLetter,INTERVAL);
 		        }
@@ -189,6 +194,6 @@
         <div id="score">0</div> 
         <div id="start">Start</div>
         <input id="word" type="text" />
-    </div>
+    </div>    
 </body>
 </html>

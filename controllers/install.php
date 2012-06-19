@@ -263,13 +263,12 @@ class Install extends CMS_Module_Installer {
         		(186, 3, 'Jump ship', 'Jump ship'),
 				(187, 3, 'Cut a deal', 'Cut a deal'),
 				(188, 3, 'Ants in your pants', 'Ants in your pants'),
-        		(189, 3, 'On cloud nine', 'On cloud nine');      		
-        		
+        		(189, 3, 'On cloud nine', 'On cloud nine'); 
 				
         		");
-        $this->add_navigation("typedef_index","Typing Defense", "typing_defense", 3);
-        $this->add_navigation("typedef_level", "Level Management", "typing_defense/level", 4, "typedef_index");
-        $this->add_navigation("typedef_question", "Question Management", "typing_defense/question", 4, "typedef_index");
+        $this->add_navigation("typedef_index","Typing Defense", $this->cms_module_name()."/typing_defense/index", 3);
+        $this->add_navigation("typedef_level", "Level Management", $this->cms_module_name()."/typing_defense/level", 4, "typedef_index");
+        $this->add_navigation("typedef_question", "Question Management", $this->cms_module_name()."/typing_defense/question", 4, "typedef_index");
     }
 }
 

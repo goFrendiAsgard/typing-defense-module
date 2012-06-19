@@ -1,15 +1,29 @@
+body
+{
+	background-image: url('../images/background.jpg');
+}
 .bubb
 { 
     position: absolute; 
     width:40px; 
-    height: 40px; 
-    font: bold 14px verdana; 
-    background-color: yellow; 
+    height: 40px;     
     text-align: center; 
-    -webkit-border-radius: 40px; 
-    -moz-border-radius: 40px; 
     vertical-align: middle; 
     padding: 5px; 
+    font: bold 14px verdana;
+    color: #FFFFFF;
+    text-shadow: 0 0 10px #c61a1a;
+	font-size:15px;
+}
+
+.bubb img
+{
+	position : absolute;
+	left: -20px;
+	top: -20px;
+	width: 80px;
+	height: 80px;
+	z-index : -1;
 }
 
 .gameover{
@@ -35,7 +49,10 @@
 
 #score
 {
-    font-size:46px; 
+    font-size:50px; 
+    font: bold 14px verdana;
+    color: #FFFFFF;
+    text-shadow: 0 0 10px #c61a1a;
     top: 25px; 
     right: 50px; 
     display: none; 

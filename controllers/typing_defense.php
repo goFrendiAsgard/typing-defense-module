@@ -40,6 +40,9 @@ class Typing_defense extends CMS_Controller {
     	}
     	$data=array(
     			"level" => $level_id,
+    			"cms" => array(
+    					"module_name" => $this->cms_module_name()
+    				)
     	);
     	$this->load->view('game.php', $data);
     }
