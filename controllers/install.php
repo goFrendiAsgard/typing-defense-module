@@ -70,8 +70,8 @@ class Install extends CMS_Module_Installer {
         $this->db->query("
         	INSERT INTO `typedef_level` (`level_id`, `level_name`, `wrong_penalty`, `collation_penalty`, `correct_point`, `interval`, `speed`, `win_score`, `min_score_to_play`, `description`) VALUES
 				(1, 'Letter Shooter', 5, 50, 10, 1000, 5, 1000, 0, '<p>Shoot the floating letter</p>'),
-				(2, 'Word Typer', 5, 50, 10, 1000, 5, 1000, 1000, '<p>Type the words</p>'),
-				(3, 'Sentence Banisher', 5, 50, 10, 1000, 5, 1000, 2000, '<p>More than words...</p>');        		
+				(2, 'Word Typer', 5, 50, 10, 3000, 4, 1000, 1000, '<p>Type the words</p>'),
+				(3, 'Sentence Banisher', 5, 50, 10, 6000, 2, 1000, 2000, '<p>More than words...</p>');        		
          ");
         $this->db->query("
         	INSERT INTO `typedef_question` (`question_id`, `level_id`, `question`, `answer`) VALUES
