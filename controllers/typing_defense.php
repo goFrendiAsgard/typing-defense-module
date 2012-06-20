@@ -19,7 +19,7 @@ class Typing_defense extends CMS_Controller {
     	$query = $this->db
     		->select('typedef_level.level_id, level_name, description, win')
     		->from('typedef_level')
-    		->join('typedef_score', 'typedef_score.level_id = typedef_level.level_id', 'left')
+    		->join('typedef_score', 'typedef_score.level_id = typedef_level.level_id AND typedef_score.user_id=\''.$this->cms_userid().'\'', 'left')
     		->where($where)
     		->order_by('min_score_to_play', 'desc')
     		->get();
