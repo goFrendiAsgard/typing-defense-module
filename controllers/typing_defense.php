@@ -38,12 +38,12 @@ class Typing_defense extends CMS_Controller {
     
     public function game($level_id=NULL){
     	if(!isset($level_id)){    		
-    		redirect($this->cms_module_name().'/index');
+    		redirect($this->cms_module_path().'/index');
     	}
     	$data=array(
     			"level" => $level_id,
     			"cms" => array(
-    					"module_name" => $this->cms_module_name()
+    					"module_path" => $this->cms_module_path()
     				)
     	);
     	$this->load->view('game.php', $data);

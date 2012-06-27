@@ -1,7 +1,7 @@
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>modules/typing_defense/assets/css/style.css" />
-    <script type="text/javascript" src="<?php echo base_url(); ?>modules/typing_defense/assets/js/jquery-1.7.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>modules/<?php echo $cms["module_path"]; ?>/assets/css/style.css" />
+    <script type="text/javascript" src="<?php echo base_url(); ?>modules/<?php echo $cms["module_path"]; ?>/assets/js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript">
 		    var DATA = null;
 		    var WRONG_PENALTY = 5;
@@ -35,12 +35,12 @@
 		        });
 
 		        $('#end').click( function(){
-		        	window.location = '<?php echo site_url($cms['module_name']."/typing_defense/index");?>';
+		        	window.location = '<?php echo site_url($cms['module_path']."/typing_defense/index");?>';
 		        });
 		
 		        $('#start').click( function(){
 			        $.ajax({
-						"url":"<?php echo base_url(); ?>typing_defense/json_start_game/<?php echo $level; ?>",
+						"url":"<?php echo site_url($cms['module_path']."/typing_defense/json_start_game/".$level) ?>",
 						"dataType":"json",
 						"success":function(response){
 							DATA = response["data"];
@@ -187,7 +187,7 @@
 		            }
 		            $('#board').append(
 				            '<span class="bubb bubb'+ k +'" style="left: '+ left +'; top: '+ top +';">'+
-				            '<img width="80px" src="<?php echo site_url('modules/'.$cms['module_name']."/assets/images/asteroid.gif");?>" />'+ 
+				            '<img width="80px" src="<?php echo site_url('modules/'.$cms['module_path']."/assets/images/asteroid.gif");?>" />'+ 
 				            	content +
 				            '</span>'
 				    	);

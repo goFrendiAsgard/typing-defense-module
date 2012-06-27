@@ -6,6 +6,8 @@
  * @author gofrendi
  */
 class Install extends CMS_Module_Installer {
+	protected $NAME = 'gofrendi.typing_defense';
+	protected $DEPENDENCIES = array();
     //this should be what happen when user install this module
     protected function do_install(){
         $this->remove_all();
@@ -235,7 +237,7 @@ class Install extends CMS_Module_Installer {
 				(157, 3, 'Iron fist', 'Iron fist'),
 				(158, 3, 'Liar\'s due', 'Liar\'s due'),
         		(159, 3, 'Claypot rice', 'Claypot rice'),
-        		(160, 3, 'Spam e-mail', 'Spam  e-mail'),
+        		(160, 3, 'Spam e-mail', 'Spam e-mail'),
         		(161, 3, 'Letter of marquee', 'Letter of marquee'),
 				(162, 3, 'Rogue trader', 'Rogue Trader'),
         		(163, 3, 'Wild quess', 'Wild quess'),
@@ -286,9 +288,9 @@ class Install extends CMS_Module_Installer {
 				(208, 4, '4+18', '22'),
         		(209, 4, '2-7', '-5');				
         	");
-        $this->add_navigation("typedef_index","Typing Defense", $this->cms_module_name()."/typing_defense/index", 3);
-        $this->add_navigation("typedef_level", "Level Management", $this->cms_module_name()."/typing_defense/level", 4, "typedef_index");
-        $this->add_navigation("typedef_question", "Question Management", $this->cms_module_name()."/typing_defense/question", 4, "typedef_index");
+        $this->add_navigation("typedef_index","Typing Defense", $this->cms_module_path()."/typing_defense/index", 3);
+        $this->add_navigation("typedef_level", "Level Management", $this->cms_module_path()."/typing_defense/level", 4, "typedef_index");
+        $this->add_navigation("typedef_question", "Question Management", $this->cms_module_path()."/typing_defense/question", 4, "typedef_index");
     }
 }
 
