@@ -288,9 +288,19 @@ class Install extends CMS_Module_Installer {
 				(208, 4, '4+18', '22'),
         		(209, 4, '2-7', '-5');				
         	");
-        $this->add_navigation("typedef_index","Typing Defense", $this->cms_module_path()."/typing_defense/index", 3);
-        $this->add_navigation("typedef_level", "Level Management", $this->cms_module_path()."/typing_defense/level", 4, "typedef_index");
-        $this->add_navigation("typedef_question", "Question Management", $this->cms_module_path()."/typing_defense/question", 4, "typedef_index");
+        
+        $original_directory = 'typing_defense';
+        $module_url = $this->cms_module_path();
+        $module_main_controller_url = '';
+        if($module_url != $original_directory){
+        	$module_main_controller_url = $module_url.'/'.$original_directory;
+        }else{
+        	$module_main_controller_url = $module_url;
+        }
+        
+        $this->add_navigation("typedef_index","Typing Defense", $module_main_controller_url."/index", 3);
+        $this->add_navigation("typedef_level", "Level Management", $module_main_controller_url."/level", 4, "typedef_index");
+        $this->add_navigation("typedef_question", "Question Management", $module_main_controller_url."/question", 4, "typedef_index");
     }
 }
 
