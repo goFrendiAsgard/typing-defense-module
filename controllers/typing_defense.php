@@ -115,7 +115,7 @@ class Typing_defense extends CMS_Controller {
     			"speed"=>$speed,
     			"win_score"=>$win_score,    			
     	);
-    	echo json_encode($json, true);
+    	$this->cms_show_json($json);
     }
     
     

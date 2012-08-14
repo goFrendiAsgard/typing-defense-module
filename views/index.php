@@ -35,7 +35,7 @@
 <?php
 	foreach($games as $game){
 		echo '<div class="game">';
-		echo anchor(site_url($cms['module_path'].'/game/'.$game['id']), 
+		echo anchor(site_url($cms['module_path'].'/typing_defense/game/'.$game['id']), 
 				'<div class="game_title">'.$game['name'].'</div>');
 		echo $game['description'];
 		if($game['win']==1){
