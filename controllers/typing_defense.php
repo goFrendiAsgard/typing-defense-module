@@ -10,7 +10,7 @@ class Typing_defense extends CMS_Controller {
     	$query = $this->db
     		->select_sum('score')
     		->from('typedef_score')
-    		->where('user_id', $this->cms_userid())
+    		->where('user_id', $this->cms_user_id())
     		->get();
     	$row = $query->row();
     	$user_score = isset($row->score)?$row->score:0;
@@ -19,7 +19,7 @@ class Typing_defense extends CMS_Controller {
     	$query = $this->db
     		->select('typedef_level.level_id, level_name, description, win')
     		->from('typedef_level')
-    		->join('typedef_score', 'typedef_score.level_id = typedef_level.level_id AND typedef_score.user_id=\''.$this->cms_userid().'\'', 'left')
+    		->join('typedef_score', 'typedef_score.level_id = typedef_level.level_id AND typedef_score.user_id=\''.$this->cms_user_id().'\'', 'left')
     		->where($where)
     		->order_by('min_score_to_play', 'desc')
     		->get();
@@ -57,7 +57,7 @@ class Typing_defense extends CMS_Controller {
     	$row = $query->row();
     	$win_score = $row->win_score;
     	
-    	$user_id = $this->cms_userid();
+    	$user_id = $this->cms_user_id();
     	$score = $this->input->post('score');
     	$where = array("level_id"=>$level_id, "user_id"=>$user_id);
     	$query = $this->db->select('score_id, score, win')
