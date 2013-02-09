@@ -120,7 +120,8 @@ class Typing_defense extends CMS_Controller {
     
     
     public function level(){
-    	$crud = new grocery_CRUD();    	
+    	$crud = new grocery_CRUD();
+		$crud->unset_jquery();    	
     	$crud->set_table('typedef_level');
     	$output = $crud->render();    	
     	$this->view('grocery_CRUD', $output, 'typedef_level');
@@ -128,6 +129,7 @@ class Typing_defense extends CMS_Controller {
     
     public function question(){
     	$crud = new grocery_CRUD();
+		$crud->unset_jquery();
     	$crud->set_table('typedef_question');
     	$crud->set_relation('level_id', 'typedef_level', 'level_name');
     	$output = $crud->render();
