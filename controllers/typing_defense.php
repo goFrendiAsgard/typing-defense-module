@@ -14,7 +14,7 @@ class Typing_defense extends CMS_Controller {
     		->get();
     	$row = $query->row();
     	$user_score = isset($row->score)?$row->score:0;
-    	
+
     	$where = 'min_score_to_play <= '.$user_score;
     	$query = $this->db
     		->select('typedef_level.level_id, level_name, description, win')
@@ -35,20 +35,17 @@ class Typing_defense extends CMS_Controller {
     	$data=array("games"=>$games, "user_score"=>$user_score);
     	$this->view('index.php', $data, 'typedef_index');
     }
-    
+
     public function game($level_id=NULL){
-    	if(!isset($level_id)){    		
+    	if(!isset($level_id)){
     		redirect($this->cms_module_path().'/index');
     	}
     	$data=array(
-    			"level" => $level_id,
-    			"cms" => array(
-    					"module_path" => $this->cms_module_path()
-    				)
+    			"level" => $level_id
     	);
-    	$this->load->view('game.php', $data);
+    	$this->view('game.php', $data, 'typedef_index', array('only_content'=>TRUE));
     }
-    
+
     public function json_end_game($level_id){
     	$query = $this->db->select('wrong_penalty, collation_penalty, correct_point, interval, speed, win_score')
     	->from('typedef_level')
@@ -56,7 +53,7 @@ class Typing_defense extends CMS_Controller {
     	->get();
     	$row = $query->row();
     	$win_score = $row->win_score;
-    	
+
     	$user_id = $this->cms_user_id();
     	$score = $this->input->post('score');
     	$where = array("level_id"=>$level_id, "user_id"=>$user_id);
@@ -64,7 +61,7 @@ class Typing_defense extends CMS_Controller {
     		->from('typedef_score')
     		->where($where)
     		->get();
-    	
+
     	if($query->num_rows()==0){
     		$win = ($score >= $win_score)?1:0;
     		if($win) $score = $win_score;
@@ -81,7 +78,7 @@ class Typing_defense extends CMS_Controller {
     			$this->db->update('typedef_score', $data, $where);
     		}
     	}
-    	
+
     }
 
     public function json_start_game($level_id){
@@ -93,7 +90,7 @@ class Typing_defense extends CMS_Controller {
     	foreach($query->result() as $row){
     		$data[] = array($row->question, $row->answer, 0);
     	}
-    	
+
     	$query = $this->db->select('wrong_penalty, collation_penalty, correct_point, interval, speed, win_score')
     		->from('typedef_level')
     		->where('level_id', $level_id)
@@ -105,7 +102,7 @@ class Typing_defense extends CMS_Controller {
     	$interval = $row->interval;
     	$speed = $row->speed;
     	$win_score = $row->win_score;
-    	
+
     	$json = array(
     			"data"=>$data,
     			"wrong_penalty"=>$wrong_penalty,
@@ -113,20 +110,20 @@ class Typing_defense extends CMS_Controller {
     			"correct_point"=>$correct_point,
     			"interval"=>$interval,
     			"speed"=>$speed,
-    			"win_score"=>$win_score,    			
+    			"win_score"=>$win_score,
     	);
     	$this->cms_show_json($json);
     }
-    
-    
+
+
     public function level(){
     	$crud = new grocery_CRUD();
-		$crud->unset_jquery();    	
+		$crud->unset_jquery();
     	$crud->set_table('typedef_level');
-    	$output = $crud->render();    	
+    	$output = $crud->render();
     	$this->view('grocery_CRUD', $output, 'typedef_level');
     }
-    
+
     public function question(){
     	$crud = new grocery_CRUD();
 		$crud->unset_jquery();
@@ -135,7 +132,7 @@ class Typing_defense extends CMS_Controller {
     	$output = $crud->render();
     	$this->view('grocery_CRUD', $output, 'typedef_question');
     }
-    
+
 }
 
 ?>

@@ -1,6 +1,7 @@
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>modules/<?php echo $cms["module_path"]; ?>/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>modules/{{ module_path }}/assets/css/style.css" />
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/nocms/js/jquery.tools.min.js"></script>
     <script type="text/javascript">
 		    var DATA = null;
 		    var WRONG_PENALTY = 5;
@@ -10,36 +11,36 @@
 		    var COLLATION_PENALTY = 50;
 		    var WIN_SCORE = 1000;
 		    var GAME_OVER = false;
-		
+
 		    $(document).ready(function(){
 		        // Getting screen resolutions and positioning the start button
 		        var width = screen.width - 100;
 		        var height = screen.height - 200;
 		        var score = 0;
 		        var timer = "";
-		        
-		        $('#start').css({ 
-		            "top" : (height/2 - $('#start').height()/2)+'px', 
-		            "left" : (width/2 - $('#start').width()/2)+'px' 
+
+		        $('#start').css({
+		            "top" : (height/2 - $('#start').height()/2)+'px',
+		            "left" : (width/2 - $('#start').width()/2)+'px'
 		        });
 
-		        $('#end').css({ 
-		            "top" : (height/2 - $('#end').height()/2)+'px', 
-		            "left" : (width/2 - $('#end').width()/2)+'px' 
+		        $('#end').css({
+		            "top" : (height/2 - $('#end').height()/2)+'px',
+		            "left" : (width/2 - $('#end').width()/2)+'px'
 		        });
-		        
-		        $('#word').css({ 
-		            "top" : (height/2 - $('#word').height()/2)+'px', 
-		            "left" : (width/2 - $('#word').width()/2)+'px' 
+
+		        $('#word').css({
+		            "top" : (height/2 - $('#word').height()/2)+'px',
+		            "left" : (width/2 - $('#word').width()/2)+'px'
 		        });
 
 		        $('#end').click( function(){
-		        	window.location = '<?php echo site_url($cms['module_path']."/typing_defense/index");?>';
+		        	window.location = '<?php echo site_url("{{ module_path }}/typing_defense/index");?>';
 		        });
-		
+
 		        $('#start').click( function(){
 			        $.ajax({
-						"url":"<?php echo site_url($cms['module_path']."/typing_defense/json_start_game/".$level) ?>",
+						"url":"<?php echo site_url("{{ module_path }}/typing_defense/json_start_game/".$level) ?>",
 						"dataType":"json",
 						"success":function(response){
 							DATA = response["data"];
@@ -50,18 +51,18 @@
 							WIN_SCORE = response["win_score"];
 							$('#start').fadeOut('slow');
 				            $('#score').show();
-				            $('#word').show(); 
-				            $('#word').focus();       
-				            timer = setInterval(on_timer, 100) 
+				            $('#word').show();
+				            $('#word').focus();
+				            timer = setInterval(on_timer, 100)
 				            genLetter();
 						},
 					    "error":function(response){
 						    alert(response);
-					    }   
+					    }
 					});
-		            
+
 		        });
-		
+
 		        // Dealing KeyEvents and fading out matched bubble
 		        $('#word').keyup(function(event){
 		            var word = $('#word').val();
@@ -72,10 +73,10 @@
 		                    var correct_word = DATA[i][1];
 		                    if(word==correct_word){
 		                        $('.bubb'+i).fadeOut('slow').hide( 'slow');
-		                        $('.bubb'+i).remove();  
+		                        $('.bubb'+i).remove();
 		                        delta_score += CORRECT_POINT * DATA[i][2];
 		                        DATA[i][2] = 0;
-		                        wrong = false;  
+		                        wrong = false;
 		                        $('#word').val('');
 		                    }else if(correct_word.indexOf(word)==0){
 		                        wrong = false;
@@ -90,7 +91,7 @@
 		                score += delta_score;
 		                display_score(score);
 		            }
-		            
+
 		        });
 
 		        function display_score(newScore){
@@ -102,7 +103,7 @@
 	                	$('#score').html(newScore);
 			        }
 				}
-		        
+
 		        function on_timer(){
 		            var top_target = height/2;
 		            var left_target = width/2;
@@ -113,18 +114,18 @@
 		                var left = $(this).css("left");
 		                left = left.slice(0, left.length-2);
 		                left = parseInt(left);
-		                
+
 		                var delta_y = top_target - top;
 		                var delta_x = left_target - left;
 		                var delta = Math.sqrt(Math.pow(delta_y,2)+Math.pow(delta_x,2));
-		                
+
 		                //if delta <20 then explode
 		                if(delta<20){
 		                    score -= COLLATION_PENALTY
 		                    $(this).remove();
 		                    display_score(score);
 		                }
-		                
+
 		                if (score<0){
 		                    //$("#board").html('<div class="gameover">You loose</div>');
 		                    $("#end").html('You Loose');
@@ -148,15 +149,15 @@
 		                    $('.bubb').fadeOut('slow').hide( 'slow');
 	                        $('.bubb').remove();
 		                }
-		                
+
 		                delta_y = Math.round(delta_y * SPEED/delta);
 		                delta_x = Math.round(delta_x * SPEED/delta);
-		                
+
 		                $(this).css("top", top+delta_y);
 		                $(this).css("left", left+delta_x);
-		            });      
+		            });
 		        }
-		
+
 		        // Generating bubble
 		        function genLetter(){
 		            if(GAME_OVER){
@@ -186,24 +187,24 @@
 		            }
 		            $('#board').append(
 				            '<span class="bubb bubb'+ k +'" style="left: '+ left +'; top: '+ top +';">'+
-				            '<img width="80px" src="<?php echo site_url('modules/'.$cms['module_path']."/assets/images/asteroid.gif");?>" />'+ 
+				            '<img width="80px" src="<?php echo site_url('modules/{{ module_path }}/assets/images/asteroid.gif');?>" />'+
 				            	content +
 				            '</span>'
 				    	);
 		            DATA[k][2] +=1;
 		            setTimeout(genLetter,INTERVAL);
 		        }
-		        
+
 		    });
-    		
+
     </script>
 </head>
 <body>
     <div id="board">
-        <div id="score">0</div> 
+        <div id="score">0</div>
         <div id="start">Start</div>
         <input id="word" type="text" />
         <div id="end">End</div>
-    </div>    
+    </div>
 </body>
 </html>

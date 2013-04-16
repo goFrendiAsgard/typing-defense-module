@@ -7,12 +7,12 @@
 }
 
 .game
-{ 
-    padding: 10px; 
-    font:bold 12px arial; 
-    background-color: #dedede; 
-    color: #000; 
-    -webkit-border-radius: 10px; 
+{
+    padding: 10px;
+    font:bold 12px arial;
+    background-color: #dedede;
+    color: #000;
+    -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     margin: 5px;
     float: left;
@@ -35,11 +35,11 @@
 <?php
 	foreach($games as $game){
 		echo '<div class="game">';
-		echo anchor(site_url($cms['module_path'].'/typing_defense/game/'.$game['id']), 
+		echo anchor(site_url('{{ module_path }}/typing_defense/game/'.$game['id']),
 				'<div class="game_title">'.$game['name'].'</div>');
 		echo $game['description'];
 		if($game['win']==1){
-			echo '<img width="20px" src="'.site_url('modules/'.$cms['module_path']."/assets/images/check.png").'" />';
+			echo '<img width="20px" src="'.site_url('modules/{{ module_path }}/assets/images/check.png').'" />';
 		};
 		echo '</div>';
 	}

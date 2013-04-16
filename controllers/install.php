@@ -17,17 +17,17 @@ class Install extends CMS_Module_Installer {
     protected function do_uninstall(){
         $this->remove_all();
     }
-    
-    private function remove_all(){    	        
+
+    private function remove_all(){
         $this->db->query("DROP TABLE IF EXISTS `typedef_score`;");
-        $this->db->query("DROP TABLE IF EXISTS `typedef_question`;"); 
-        $this->db->query("DROP TABLE IF EXISTS `typedef_level`;");       
-        
+        $this->db->query("DROP TABLE IF EXISTS `typedef_question`;");
+        $this->db->query("DROP TABLE IF EXISTS `typedef_level`;");
+
         $this->remove_navigation("typedef_index");
-        $this->remove_navigation("typedef_level"); 
-        $this->remove_navigation("typedef_question");    
+        $this->remove_navigation("typedef_level");
+        $this->remove_navigation("typedef_question");
     }
-    
+
     private function build_all(){
         $this->db->query("
             CREATE TABLE IF NOT EXISTS `typedef_level` (
@@ -65,8 +65,7 @@ class Install extends CMS_Module_Installer {
               PRIMARY KEY (`score_id`),
               KEY `level_id` (`level_id`),
               KEY `user_id` (`user_id`),
-              CONSTRAINT `typedef_score_ibfk_1` FOREIGN KEY (`level_id`) REFERENCES `typedef_level` (`level_id`),
-              CONSTRAINT `typedef_score_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `cms_user` (`user_id`)
+              CONSTRAINT `typedef_score_ibfk_1` FOREIGN KEY (`level_id`) REFERENCES `typedef_level` (`level_id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
          ");
         $this->db->query("
@@ -74,7 +73,7 @@ class Install extends CMS_Module_Installer {
 				(1, 'Letter Shooter', 5, 50, 10, 1000, 5, 1000, 0, '<p>Shoot the floating letter</p>'),
 				(2, 'Word Typer', 5, 50, 10, 2000, 4, 1000, 1000, '<p>Type the words</p>'),
 				(3, 'Sentence Banisher', 5, 50, 10, 6000, 2, 1000, 2000, '<p>More than words...</p>'),
-        		(4, 'Amateur Calculator', 5, 50, 10, 3000, 2, 1000, 2000, '<p>Calculate and conquer...</p>');        		
+        		(4, 'Amateur Calculator', 5, 50, 10, 3000, 2, 1000, 2000, '<p>Calculate and conquer...</p>');
          ");
         $this->db->query("
         	INSERT INTO `typedef_question` (`question_id`, `level_id`, `question`, `answer`) VALUES
@@ -131,7 +130,7 @@ class Install extends CMS_Module_Installer {
 				(51, 1, 'Z', 'Z'),
 				(52, 1, 'z', 'z'),
         		(53, 2, 'Eat', 'Eat'),
-				(54, 2, 'Cut', 'Cut'),	
+				(54, 2, 'Cut', 'Cut'),
         		(55, 2, 'Run', 'Run'),
         		(56, 2, 'Flee', 'Flee'),
 				(57, 2, 'Book', 'Book'),
@@ -141,7 +140,7 @@ class Install extends CMS_Module_Installer {
 				(61, 2, 'Tool', 'Tool'),
 				(62, 2, 'Yes', 'Yes'),
         		(63, 2, 'No', 'No'),
-				(64, 2, 'Lie', 'Lie'),	
+				(64, 2, 'Lie', 'Lie'),
         		(65, 2, 'Die', 'Die'),
         		(66, 2, 'Pie', 'Pie'),
 				(67, 2, 'Leg', 'Leg'),
@@ -151,7 +150,7 @@ class Install extends CMS_Module_Installer {
 				(71, 2, 'Hair', 'Hair'),
 				(72, 2, 'Fur', 'Fur'),
         		(73, 2, 'Bow', 'Bow'),
-				(74, 2, 'Arc', 'Arc'),	
+				(74, 2, 'Arc', 'Arc'),
         		(75, 2, 'View', 'View'),
         		(76, 2, 'Dig', 'Dig'),
 				(77, 2, 'Let', 'Let'),
@@ -161,7 +160,7 @@ class Install extends CMS_Module_Installer {
 				(81, 2, 'Sea', 'Sea'),
 				(82, 2, 'Hat', 'Hat'),
         		(83, 2, 'Cap', 'Cap'),
-				(84, 2, 'Tie', 'Tie'),	
+				(84, 2, 'Tie', 'Tie'),
         		(85, 2, 'Ball', 'Ball'),
         		(86, 2, 'Data', 'Data'),
 				(87, 2, 'Set', 'Set'),
@@ -171,7 +170,7 @@ class Install extends CMS_Module_Installer {
 				(91, 2, 'Goat', 'Goat'),
 				(92, 2, 'Cow', 'Cow'),
         		(93, 2, 'Sow', 'Sow'),
-				(94, 2, 'Deer', 'Deer'),	
+				(94, 2, 'Deer', 'Deer'),
         		(95, 2, 'Cat', 'Cat'),
         		(96, 2, 'Dog', 'Dog'),
 				(97, 2, 'Bird', 'Bird'),
@@ -181,7 +180,7 @@ class Install extends CMS_Module_Installer {
 				(101, 2, 'Lamp', 'Lamp'),
 				(102, 2, 'All', 'All'),
         		(103, 2, 'Ant', 'Ant'),
-				(104, 2, 'Lion', 'Lion'),	
+				(104, 2, 'Lion', 'Lion'),
         		(105, 2, 'Fool', 'Fool'),
         		(106, 2, 'Drug', 'Drug'),
 				(107, 2, 'Egg', 'Egg'),
@@ -191,7 +190,7 @@ class Install extends CMS_Module_Installer {
 				(111, 2, 'Dump', 'Dump'),
 				(112, 2, 'Deal', 'Deal'),
         		(113, 2, 'Free', 'Free'),
-				(114, 2, 'Sit', 'Sit'),	
+				(114, 2, 'Sit', 'Sit'),
         		(115, 2, 'Rat', 'Rat'),
         		(116, 2, 'Mole', 'Mole'),
 				(117, 2, 'Nail', 'Nail'),
@@ -201,7 +200,7 @@ class Install extends CMS_Module_Installer {
 				(121, 2, 'Lash', 'Lash'),
 				(122, 2, 'Fish', 'Fish'),
         		(123, 2, 'Mutt', 'Mutt'),
-				(124, 2, 'Door', 'Door'),	
+				(124, 2, 'Door', 'Door'),
         		(125, 2, 'Tile', 'Tile'),
         		(126, 2, 'Step', 'Step'),
 				(127, 2, 'Stop', 'Stop'),
@@ -211,7 +210,7 @@ class Install extends CMS_Module_Installer {
         		(131, 3, 'Eating cake', 'Eating cake'),
 				(132, 3, 'Pipe down', 'Pipe down'),
         		(133, 3, 'Deep sleep', 'Deep sleep'),
-				(134, 3, 'Door to door', 'Door to door'),	
+				(134, 3, 'Door to door', 'Door to door'),
         		(135, 3, 'Tile cracker', 'Tile cracker'),
         		(136, 3, 'Step up', 'Step up'),
 				(137, 3, 'Stop down', 'Stop down'),
@@ -221,7 +220,7 @@ class Install extends CMS_Module_Installer {
         		(141, 3, 'Deep sea', 'Deep sea'),
 				(142, 3, 'Run amok', 'Run amok'),
         		(143, 3, 'Island to island', 'Island to island'),
-				(144, 3, 'Day by day', 'Day by day'),	
+				(144, 3, 'Day by day', 'Day by day'),
         		(145, 3, 'Living hell', 'Living hell'),
         		(146, 3, 'Mad scientist', 'Mad scientist'),
 				(147, 3, 'Loony bard', 'Loony bard'),
@@ -231,7 +230,7 @@ class Install extends CMS_Module_Installer {
         		(151, 3, 'Death door', 'Death door'),
 				(152, 3, 'Reader digest', 'Reader digest'),
         		(153, 3, 'Final judgement', 'Final judgement'),
-				(154, 3, 'Evil twin', 'Evil twin'),	
+				(154, 3, 'Evil twin', 'Evil twin'),
         		(155, 3, 'Devil\'s luck', 'Devil\'s luck'),
         		(156, 3, 'Fear to tread', 'Fear to tread'),
 				(157, 3, 'Iron fist', 'Iron fist'),
@@ -241,7 +240,7 @@ class Install extends CMS_Module_Installer {
         		(161, 3, 'Letter of marquee', 'Letter of marquee'),
 				(162, 3, 'Rogue trader', 'Rogue Trader'),
         		(163, 3, 'Wild quess', 'Wild quess'),
-				(164, 3, 'Trade warrant', 'Trade warrant'),	
+				(164, 3, 'Trade warrant', 'Trade warrant'),
         		(165, 3, 'Secure routing', 'Secure routing'),
         		(166, 3, 'Document analysis', 'Document analysis'),
 				(167, 3, 'Requirement engineering', 'Requirement engineering'),
@@ -251,7 +250,7 @@ class Install extends CMS_Module_Installer {
         		(171, 3, 'Bad mouth', 'Bad mouth'),
 				(172, 3, 'High roller', 'High roller'),
         		(173, 3, 'Raise the roof', 'Raise the roof'),
-				(174, 3, 'Hit the spot', 'Hit the spot'),	
+				(174, 3, 'Hit the spot', 'Hit the spot'),
         		(175, 3, 'Buy the farm', 'Buy the farm'),
         		(176, 3, 'Green thumb', 'Green thumb'),
 				(177, 3, 'Sitting duck', 'Sitting duck'),
@@ -261,7 +260,7 @@ class Install extends CMS_Module_Installer {
         		(181, 3, 'Low life', 'Low life'),
 				(182, 3, 'Know it all', 'Know it all'),
         		(183, 3, 'Sweet tooth', 'Sweet tooth'),
-				(184, 3, 'Zone out', 'Zone out'),	
+				(184, 3, 'Zone out', 'Zone out'),
         		(185, 3, 'In a bind', 'In a bind'),
         		(186, 3, 'Jump ship', 'Jump ship'),
 				(187, 3, 'Cut a deal', 'Cut a deal'),
@@ -271,7 +270,7 @@ class Install extends CMS_Module_Installer {
         		(191, 4, '5-7', '-2'),
 				(192, 4, '9+4', '13'),
         		(193, 4, '20-3', '17'),
-				(194, 4, '8-9', '-1'),	
+				(194, 4, '8-9', '-1'),
         		(195, 4, '7+8', '15'),
         		(196, 4, '3+2', '5'),
 				(197, 4, '4+4', '8'),
@@ -281,14 +280,14 @@ class Install extends CMS_Module_Installer {
         		(201, 4, '25-7', '18'),
 				(202, 4, '9-5', '4'),
         		(203, 4, '5+9', '14'),
-				(204, 4, '8-10', '-2'),	
+				(204, 4, '8-10', '-2'),
         		(205, 4, '7+9', '16'),
         		(206, 4, '3+0', '3'),
 				(207, 4, '0-3', '-3'),
 				(208, 4, '4+18', '22'),
-        		(209, 4, '2-7', '-5');				
+        		(209, 4, '2-7', '-5');
         	");
-        
+
         $original_directory = 'typing_defense';
         $module_url = $this->cms_module_path();
         $module_main_controller_url = '';
@@ -297,7 +296,7 @@ class Install extends CMS_Module_Installer {
         }else{
         	$module_main_controller_url = $module_url;
         }
-        
+
         $this->add_navigation("typedef_index","Typing Defense", $module_main_controller_url."/index", 3);
         $this->add_navigation("typedef_level", "Level Management", $module_main_controller_url."/level", 4, "typedef_index");
         $this->add_navigation("typedef_question", "Question Management", $module_main_controller_url."/question", 4, "typedef_index");
