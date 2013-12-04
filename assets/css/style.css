@@ -47,17 +47,24 @@ body
     padding: 0; 
 }  
 
-#score
+#score, #live
 {
     font-size:50px; 
     font: bold 14px verdana;
     color: #FFFFFF;
     text-shadow: 0 0 10px #c61a1a;
-    top: 25px; 
     right: 50px; 
     display: none; 
     text-align:right; 
+}
+#live
+{    
+    top: 25px; 
 } 
+#score
+{    
+    top: 100px; 
+}
 
 #start
 { 
