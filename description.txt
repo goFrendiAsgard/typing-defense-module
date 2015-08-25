@@ -1,0 +1,9 @@
+{
+    "dependencies"    : [],
+    "name"            : "gofrendi.typing_defense",
+    "description"     : "Typing defense game",
+    "version"         : "0.0.0",
+    "activate"        : "info/activate",
+    "deactivate"      : "info/deactivate",
+    "upgrade"         : "info/upgrade"
+}
